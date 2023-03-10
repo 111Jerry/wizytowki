@@ -12,27 +12,56 @@ Oba typy wizytówek powinny mieć dynamiczny atrybut label_length, który zwraca
 Stwórz funkcję create_contacts, która będzie potrafiła komponować losowe wizytówki. Niech ta funkcja przyjmuje dwa
 parametry: rodzaj wizytówki oraz ilość. Wykorzystaj bibliotekę faker do generowania danych.
 """
+import sys
+import logging
 #from faker import Faker
-class VCard:
-    def __init__(self, imie, nazwisko, nazwa_firmy, stanowisko, e_mail):
+#fake = Faker()
+class BaseContact:
+    def __init__(self, imie, nazwisko, telefon, e_mail):
         self.imie = imie
         self.nazwisko = nazwisko
-        self.nazwa_firmy = nazwa_firmy
-        self.stanowisko = stanowisko
+        self.telefon = telefon
         self.e_mail = e_mail
 
-        self._lenght_name = 0
+        #Variables
+        self._label_lenght = len(imie) + len(nazwisko) +1
+    
+    def contact(self, ):
+        print(f"Wybieram numer +48 ", self.telefon, "i dzwonię do ", self.imie, self.nazwisko, self.e_mail)
     
     def __str__(self):
-        return f'{self.imie} {self.nazwisko} {self.nazwa_firmy} {self.stanowisko}'
+        return f"{self.imie} {self.nazwisko} {self.telefon} {self.e_mail}"
     
     def __repr__(self):
-        return f"VCard(imie={self.imie} nazwisko={self.nazwisko}, nazwa_firmy={self.nazwa_firmy}, stanowisko={self.stanowisko}, e_mail={self.e_mail})"
+        return f"VCard(imie={self.imie} nazwisko={self.nazwisko}, telefon={self.telefon}, e_mail={self.e_mail})"
 
-    def contact(self):
-        print(f"Wybieram kontakt:  ")
+    @property
+    def label_lenght(self):
+        return self._label_lenght
+    
+    def create_contacts(self):
+        input(__name__)
+
+class BusinessContacts(BaseContact):
+    def __init__(self, stanowisko, firma, telefon_firmowy, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.stanowisko = stanowisko
+        self.firma = firma
+        self.telefon_firmowy = telefon_firmowy
+    
+    def businesscontacts(self,):
+        print(f"Wybieram numer firmowy ", self.telefon_firmowy, "i dzwonię do ", self.imie, self.nazwisko, self.stanowisko, "w",)
+
+jnowak = BaseContact(imie="Jan", nazwisko="Nowak", telefon=728443113, e_mail = "jnowak@luxmed.pl")
+akowalski = BusinessContacts(imie= "Andrzej", nazwisko="Kowalski", telefon=723445773, stanowisko="senior specialist", firma="Luxmed", telefon_firmowy=727110234)
+
+print(akowalski.label_lenght)
+jnowak.contact()
+akowalski.businesscontacts()
+akowalski.label_lenght
 """
 jnowak = VCard(imie="Jan", nazwisko="Nowak", nazwa_firmy="Luxmed", stanowisko="manager", e_mail = "jnowak@luxmed.pl")
+akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
 print(jnowak.stanowisko)
 akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
 print(akowalski.stanowisko)
@@ -42,7 +71,4 @@ mstelmaszczyk = VCard(imie="Mirosław", nazwisko="Stelmaszczyk", nazwa_firmy="St
 print(mstelmaszczyk.stanowisko)
 bniewiadomski = VCard(imie="Bogdan", nazwisko="Niewiadomski", nazwa_firmy="Solid Security", stanowisko="specialist", e_mail = "bniewiadomski@solid.eu")
 print(bniewiadomski.stanowisko)
-
-
-print(jnowak)
 """
