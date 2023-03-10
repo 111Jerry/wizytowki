@@ -1,14 +1,4 @@
 """
-Używając dziedziczenia, rozdziel podstawową klasę wizytówki na dwie osobne: pierwsza (BaseContact) powinna przechowywać
-podstawowe dane kontaktowe takie jak imię, nazwisko, telefon, adres e-mail. Za pomocą kolejnej klasy (BusinessContact)
-rozszerz klasę bazową o przechowywanie informacji związanych z pracą danej osoby – stanowisko, nazwa firmy, telefon służbowy.
-
-Oba typy wizytówek, powinny oferować metodę contact(), która wyświetli na konsoli komunikat w postaci
-“Wybieram numer +48 123456789 i dzwonię do Jan Kowalski”. Wizytówka firmowa powinna wybierać służbowy numer telefonu,
-a wizytówka bazowa prywatny.
-
-Oba typy wizytówek powinny mieć dynamiczny atrybut label_length, który zwraca długość imienia i nazwiska danej osoby.
-
 Stwórz funkcję create_contacts, która będzie potrafiła komponować losowe wizytówki. Niech ta funkcja przyjmuje dwa
 parametry: rodzaj wizytówki oraz ilość. Wykorzystaj bibliotekę faker do generowania danych.
 """
@@ -24,7 +14,7 @@ class BaseContact:
         self.e_mail = e_mail
 
         #Variables
-        self._label_lenght = len(imie) + len(nazwisko) +1
+        self._label_lenght = 0
     
     def contact(self):
         print(f"Wybieram numer +48", self.telefon, "i dzwonię do ", self.imie, self.nazwisko)
@@ -37,6 +27,8 @@ class BaseContact:
 
     @property
     def label_lenght(self):
+        self._label_lenght = len(self.imie) + len(self.nazwisko) +1
+        print(self._label_lenght)
         return self._label_lenght
     
     
@@ -53,7 +45,7 @@ class BusinessContacts(BaseContact):
 jnowak = BaseContact(imie="Jan", nazwisko="Nowak", telefon=728443113, e_mail = "jnowak@luxmed.pl")
 akowalski = BusinessContacts(imie="Andrzej", nazwisko="Kowalski", telefon=723445773, stanowisko="senior specialist", firma="Luxmed", telefon_firmowy=727110234, e_mail="akowalski@luxmed.pl")
 
-print(akowalski.label_lenght)
+akowalski.label_lenght
 jnowak.contact()
 akowalski.businesscontacts()
 akowalski.contact()
