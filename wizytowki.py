@@ -9,7 +9,7 @@ class VCard:
         self.stanowisko = stanowisko
         self.e_mail = e_mail
 
-        self._lenght = 0
+        self.lenght_name = 0
     
     def __str__(self):
         return f'{self.imie} {self.nazwisko} {self.nazwa_firmy} {self.stanowisko}'
