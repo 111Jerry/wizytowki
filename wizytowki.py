@@ -26,22 +26,20 @@ class BaseContact:
         #Variables
         self._label_lenght = len(imie) + len(nazwisko) +1
     
-    def contact(self, ):
-        print(f"Wybieram numer +48 ", self.telefon, "i dzwonię do ", self.imie, self.nazwisko, self.e_mail)
+    def contact(self):
+        print(f"Wybieram numer +48", self.telefon, "i dzwonię do ", self.imie, self.nazwisko)
     
     def __str__(self):
         return f"{self.imie} {self.nazwisko} {self.telefon} {self.e_mail}"
     
     def __repr__(self):
-        return f"VCard(imie={self.imie} nazwisko={self.nazwisko}, telefon={self.telefon}, e_mail={self.e_mail})"
+        return f"BaseContact(imie={self.imie} nazwisko={self.nazwisko}, telefon={self.telefon}, e_mail={self.e_mail})"
 
     @property
     def label_lenght(self):
         return self._label_lenght
     
-    def create_contacts(self):
-        input(__name__)
-
+    
 class BusinessContacts(BaseContact):
     def __init__(self, stanowisko, firma, telefon_firmowy, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,18 +47,20 @@ class BusinessContacts(BaseContact):
         self.firma = firma
         self.telefon_firmowy = telefon_firmowy
     
-    def businesscontacts(self,):
-        print(f"Wybieram numer firmowy ", self.telefon_firmowy, "i dzwonię do ", self.imie, self.nazwisko, self.stanowisko, "w",)
+    def businesscontacts(self):
+        print(f"Wybieram numer firmowy +48", self.telefon_firmowy, "i dzwonię do ", self.imie, self.nazwisko)
 
 jnowak = BaseContact(imie="Jan", nazwisko="Nowak", telefon=728443113, e_mail = "jnowak@luxmed.pl")
-akowalski = BusinessContacts(imie= "Andrzej", nazwisko="Kowalski", telefon=723445773, stanowisko="senior specialist", firma="Luxmed", telefon_firmowy=727110234)
+akowalski = BusinessContacts(imie="Andrzej", nazwisko="Kowalski", telefon=723445773, stanowisko="senior specialist", firma="Luxmed", telefon_firmowy=727110234, e_mail="akowalski@luxmed.pl")
 
 print(akowalski.label_lenght)
 jnowak.contact()
 akowalski.businesscontacts()
-akowalski.label_lenght
+akowalski.contact()
+
+def create_contacts(self):
+        input(__name__)
 """
-jnowak = VCard(imie="Jan", nazwisko="Nowak", nazwa_firmy="Luxmed", stanowisko="manager", e_mail = "jnowak@luxmed.pl")
 akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
 print(jnowak.stanowisko)
 akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
