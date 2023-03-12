@@ -41,26 +41,32 @@ class BusinessContacts(BaseContact):
     
     def businesscontacts(self):
         print(f"Wybieram numer firmowy +48", self.telefon_firmowy, "i dzwonię do ", self.imie, self.nazwisko)
-
+"""
+Baza kontaktów z danymi pryw.
 jnowak = BaseContact(imie="Jan", nazwisko="Nowak", telefon=728443113, e_mail = "jnowak@luxmed.pl")
+kraczek = BaseContact(imie="Krzysztof", nazwisko="Raczek", telefon=600443113, e_mail = "kraczek@o2.pl")
+rdabrowski = BaseContact(imie="Rafał", nazwisko="Dąbrowski", telefon=606221213, e_mail = "rdabrowski@wp.pl")
+jkrolik = BaseContact(imie="Jrosław", nazwisko="Królik", telefon=723515234, e_mail = "jkrolik@tlen.pl")
+mzabielny = BaseContact(imie="Maciek", nazwisko="Zabielny", telefon=503234765, e_mail = "mzabielny@gmail.com")
+
+Baza kontaktów firmowych
 akowalski = BusinessContacts(imie="Andrzej", nazwisko="Kowalski", telefon=723445773, stanowisko="senior specialist", firma="Luxmed", telefon_firmowy=727110234, e_mail="akowalski@luxmed.pl")
+rmucha = BusinessContacts(imie="Robert", nazwisko="Mucha", telefon=602773443, stanowisko="dyspozytor", firma="STEKOP", telefon_firmowy=722443567, e_mail="rmucha@stekop.pl")
+amaciazek = BusinessContacts(imie="Andrzej", nazwisko="Maciążek", telefon=600713234, stanowisko="main specialist", firma="Commarch", telefon_firmowy=728443562, e_mail="amaciazek@commarch.eu")
+wmieszko = BusinessContacts(imie="Wojciech", nazwisko="Mieszko", telefon=500789234, stanowisko="senior specialist", firma="Urząd Dozoru Technicznego", telefon_firmowy=727500276, e_mail="wmieszko@udt.pl")
+wmitura = BusinessContacts(imie="Wojciech", nazwisko="Mitura", telefon=723446227, stanowisko="kierowca", firma="CCC", telefon_firmowy=723221364, e_mail="wmitura@ccc.eu")
+sbierdzi = BusinessContacts(imie="Sławomir", nazwisko="Bierdzi", telefon=504998737, stanowisko="specialist", firma="Urząd Lotnictwa Cywilnego", telefon_firmowy=690270576, e_mail="sbierdzi@ulc.com")
 
 akowalski.label_lenght
 jnowak.contact()
 akowalski.businesscontacts()
 akowalski.contact()
+"""
 
-def create_contacts(self):
+def create_contacts(typ_of_contact, number):
         input(__name__)
-"""
-akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
-print(jnowak.stanowisko)
-akowalski = VCard(imie="Andrzej", nazwisko="Kowalski", nazwa_firmy="Commarch", stanowisko="senior specialist", e_mail="akowalski@commarch.com")
-print(akowalski.stanowisko)
-aklin = VCard(imie="Andrzej", nazwisko="Klin", nazwa_firmy="Merlin", stanowisko="junior specialist", e_mail = "aklin@merlin.pl")
-print(aklin.stanowisko)
-mstelmaszczyk = VCard(imie="Mirosław", nazwisko="Stelmaszczyk", nazwa_firmy="Stekop", stanowisko="manager", e_mail = "mstelmaszczyk@stekop.pl")
-print(mstelmaszczyk.stanowisko)
-bniewiadomski = VCard(imie="Bogdan", nazwisko="Niewiadomski", nazwa_firmy="Solid Security", stanowisko="specialist", e_mail = "bniewiadomski@solid.eu")
-print(bniewiadomski.stanowisko)
-"""
+
+if __name__ == "__main__":
+    text = input("Wpisz nazwisko, aby sprawdzić czy jest ono w naszej bazie: ")
+    end = create_contacts(text)
+    print(end)
