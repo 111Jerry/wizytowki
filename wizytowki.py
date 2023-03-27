@@ -4,8 +4,8 @@ parametry: rodzaj wizytówki oraz ilość. Wykorzystaj bibliotekę faker do gene
 """
 import sys
 import logging
-#from faker import Faker
-#fake = Faker()
+from faker import Faker
+fake = Faker()
 class BaseContact:
     def __init__(self, imie, nazwisko, telefon, e_mail):
         self.imie = imie
@@ -62,11 +62,41 @@ jnowak.contact()
 akowalski.businesscontacts()
 akowalski.contact()
 """
+private_contact = []
+business_contact = []
 
 def create_contacts(typ_of_contact, number):
-        input(__name__)
+        if typ_of_contact == 1:
+            for i in range(number):
+                imie = fake.first_name()
+                nazwisko = fake.last_name()
+                telefon = fake.phone_number()
+                e_mail = fake.email()
+
+                customer_prv = BaseContact(imie, nazwisko, telefon, e_mail)
+                private_contact.append(customer_prv)
+                print(customer_prv)
+                #print(private_contact)
+                print(f"{imie} {nazwisko}, {telefon}, {e_mail}")
+        elif typ_of_contact == 2:
+            for i in range(number):  
+                imie = fake.first_name()
+                nazwisko = fake.last_name()
+                telefon = fake.phone_number()
+                e_mail = fake.email()
+                stanowisko = fake.job()
+                firma = fake.company()
+                telefon_firmowy = fake.phone_number()
+
+                customer_business = BusinessContacts(imie, nazwisko, telefon, stanowisko, firma, telefon_firmowy, e_mail)
+                business_contact.append(customer_business)
+                print(customer_business)
+                #print(business_contact)
+                print(f"{imie} {nazwisko}, {telefon}, {e_mail}, {stanowisko}, {firma}, {telefon_firmowy}")
+        return
 
 if __name__ == "__main__":
-    text = input("Wpisz nazwisko, aby sprawdzić czy jest ono w naszej bazie: ")
-    end = create_contacts(text)
-    print(end)
+    typ_of_contact = int(input("Wciśnij 1, aby wygenerować wizytówki z danymi prywatnymi lub 2, aby wygenerować wizytówki firmowe: "))
+    number = int(input("Podaj liczbę wizytówek: "))
+    create_contacts(typ_of_contact, number)
+    #print(end)
