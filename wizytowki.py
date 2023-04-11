@@ -10,7 +10,7 @@ class BaseContact:
         self.e_mail = e_mail
 
         #Variables
-        self._label_lenght = 0
+        #self._label_lenght = 0
     
     def __str__(self):
         return f"{self.imie} {self.nazwisko} {self.telefon} {self.e_mail}"
@@ -20,9 +20,9 @@ class BaseContact:
 
     @property
     def label_lenght(self):
-        self._label_lenght = len(self.imie) + len(self.nazwisko) +1
+        self._label_lenght = len(self.imie) + len(self.nazwisko)
         print(self._label_lenght)
-        return self._label_lenght
+        #return self._label_lenght
     
     
 class BusinessContacts(BaseContact):
@@ -46,6 +46,7 @@ def create_contacts(typ_of_contact, number):
 
                 customer_prv = BaseContact(imie, nazwisko, telefon, e_mail)
                 contact(customer_prv)
+                customer_prv.label_lenght
                 #print(customer_prv)
                 #print(f"{imie} {nazwisko}, {telefon}, {e_mail}")
         elif typ_of_contact == 2:
@@ -60,6 +61,7 @@ def create_contacts(typ_of_contact, number):
 
                 customer_business = BusinessContacts(imie, nazwisko, telefon, stanowisko, firma, telefon_firmowy, e_mail)
                 contact(customer_business)
+                customer_business.label_lenght
                 #print(customer_business)
                 #print(f"{imie} {nazwisko}, {telefon}, {e_mail}, {stanowisko}, {firma}, {telefon_firmowy}")
         return
